@@ -9,7 +9,7 @@ const Auth = () => {
     useEffect(() => {
         let userData = JSON.parse(localStorage.getItem("userData"));
         if(userData) setRedirect(true);
-    });
+    }, []);
 
     const [loading, setLoading] = useState(false);
     const [redirect, setRedirect] = useState(false);
@@ -33,7 +33,7 @@ const Auth = () => {
                 clientId="932926853812-q72rn1t0a3fo3lrufnmqthshsv3e56vu.apps.googleusercontent.com"
                 buttonText="LOGIN"
                 scope="https://www.googleapis.com/auth/calendar"
-                accessType="offline"
+                // accessType="offline"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
             />

@@ -3,12 +3,14 @@ const app = express();
 const https = require('https');
 const fetch = require("node-fetch");
 var http = require('http');
+const cors = require('cors');
 
+app.use(cors())
 app.set('json spaces', 2);
 
 app.get('/', async (req, res) => {
     const gcal = require("google-calendar")
-    const accessToken = "ya29.GlzVBgkoTAanS6lBh_xSlBOrBJxyfHdvyDGtdWUJDccliO4R1k16joxcp2B59oMTRSYSkwSn4rFNmfKoibS6xcu9zw1E6xQR6HIS7DfrrJ67G4jBFWtwJDcddcIy2Q";
+    const accessToken = "ya29.GlzVBrHTKJSErDx0vnwedR6c6P1QBIjY0IFVpwZp2SwKAyXZFdC11pKR9e8HW5-GQqWNckOZGoxJOln7oBWpuI4qRNAKp50CD6pfVEKq1jnAxGvbr7wUIqT7yyxoag";
     const google_calendar = new gcal.GoogleCalendar(accessToken);
     const HOME = "Hall 5 NTU"; //default is _HOME_
     let start_place = HOME; //default is _HOME_
