@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import classes from './Home.scss';
 import {UserContext} from "../../UserContext";
 
 const Home = () => {
 
     const routesData = useContext(UserContext);
+    const [showExtendedMenu, setShowExtendedMenu ] = useState(false);
 
     const details = () => {
         return routesData.map(({details, legs}, index) => {
@@ -16,7 +17,7 @@ const Home = () => {
 
                             <div className={classes.section}>
                                 {(index!=0) && <div className={[classes.extraTime, classes.linedIcon2].join(" ")}>
-                                    <div className={classes.extendedMenu}>
+                                    <div onClick={setShowExtendedMenu(true)} className={[classes.extendedMenu, showExtendedMenu ? classes.extendedMenuActive : null].join(" ")}>
                                         <div className={classes.icon}></div>
                                         <div className={classes.icon}></div>
                                         <div className={classes.icon}></div>

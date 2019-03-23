@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49f24cc0-448b-4af3-b93e-d95e4e35fdad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DayPlanner/src/components/Auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../DayPlanner/src/components/Auth/Auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DayPlanner/src/components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../DayPlanner/src/components/Home/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DayPlanner/src/components/Home/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../DayPlanner/src/components/Home/Home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DayPlanner/src/components/Page/Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/../DayPlanner/src/components/Page/Page.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />

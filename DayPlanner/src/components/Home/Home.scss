@@ -106,14 +106,12 @@
 
       .extendedMenu{
         transition: all 0.3s ease-out;
-        opacity: 1;
-        width: 100%;
-        visibility: visible;
-        //background: #000;
-        width: 175px;
+        opacity: 0;
+        width: 0%;
+        visibility: hidden;
         position: absolute;
         top: 0;
-        left: 60px;
+        left: 55px;
         height: 100%;
 
         display: flex;
@@ -127,6 +125,11 @@
           height: 40px;
         }
 
+      }
+      .extendedMenuActive{
+        visibility: visible;
+        opacity: 1;
+        width: 175px;
       }
     }
     .linedIcon2{
