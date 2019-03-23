@@ -1,6 +1,8 @@
 import React from 'react';
-import AppRouter from './AppRouter';
-import Navbar from './components/UI/Navbar/Navbar';
+import Layer from "./components/Layer/Layer";
+import CustChatbot from "./components/Chatbot/Chatbot";
+
+import {Switch, Route} from "react-router-dom";
 
 
 class App extends React.Component {
@@ -8,8 +10,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Navbar/>
-                <AppRouter/>
+                <Layer />
+
+
             </div>
         );
     }

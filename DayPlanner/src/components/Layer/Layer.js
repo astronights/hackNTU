@@ -1,12 +1,16 @@
 import React from 'react';
 import Page from "../Page/Page";
-import Home from "../Home/Home";
+import Navbar from "../UI/Navbar/Navbar";
+import AppRouter from "../../AppRouter";
+import CustChatbot from "../Chatbot/Chatbot";
+import {Route} from 'react-router-dom';
 
 const Layer = () => {
     return (
-        <Page>
-            <Home/>
-        </Page>
+            <Page>
+
+                <AppRouter/>
+            </Page>
     );
 }
 
