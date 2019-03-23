@@ -1,0 +1,19 @@
+.Home {
+    text-align: center;
+
+    .data{
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+.HomeHeader {
+    background-color: #222;
+    height: 30px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
