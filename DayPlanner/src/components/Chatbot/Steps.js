@@ -6,7 +6,7 @@ export const steps = [
     },
     {
         id: "1",
-        message: "What's your name, buddy?",
+        message: "What's your name?",
         trigger: "name"
     },
     {
@@ -18,7 +18,8 @@ export const steps = [
     {
         id: "3",
         message: "Hey, {previousValue}!",
-        trigger: "4"
+        trigger: "4",
+        // end: true
     },
     {
         id: "4",
@@ -27,22 +28,17 @@ export const steps = [
     },
     {
         id: "5",
-        message: "Where is your heart?",
+        message: "What's your Home Address?",
         trigger: "home"
     },
     {
         id: "home",
         user: true,
-        trigger: "7"
-    },
-    {
-        id: "7",
-        message: "*Finger guns*",
         trigger: "8"
     },
     {
         id: "8",
-        message: "Travel discount ah?",
+        message: "Is your Travel subsidized?",
         trigger: "9"
     },
     {

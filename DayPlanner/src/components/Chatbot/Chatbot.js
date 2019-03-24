@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import ChatBot from "react-simple-chatbot";
-// import "./styles.css";
+import  classes from "./Chatbot.scss";
 import {steps} from "./steps.js"
 import {UserContext} from "../../UserContext";
 import {Redirect} from 'react-router-dom';
@@ -18,7 +18,7 @@ const CustChatbot = () => {
     }
 
         return (
-            <div style={{'height':"100vh"}}>
+            <div className={classes.chatbot}>
                 {redirect ? <Redirect to="/home" />: null}
                 <ChatBot
                     handleEnd = {handleEnd}

@@ -9,7 +9,8 @@ const AppRouter =  () => (
     <Switch>
         <Route path='/auth' component={Auth}/>
         <ProtectedRoute path='/chatbot' component={CustChatbot} />
-        <ProtectedRoute  path='/' component={Home}/>
+        <ProtectedRoute path='/home' component={Home} />
+        <ProtectedRoute  path='/' component={Auth}/>
         {/*<ProtectedRoute  path='/chatbot' component={Home}/>*/}
     </Switch>
 );

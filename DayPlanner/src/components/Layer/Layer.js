@@ -8,7 +8,6 @@ import {Route} from 'react-router-dom';
 const Layer = () => {
     return (
             <Page>
-
                 <AppRouter/>
             </Page>
     );

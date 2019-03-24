@@ -5,6 +5,10 @@ import Modal from '../Modal/Modal';
 import API from "../../utils/API";
 import Navbar from "../UI/Navbar/Navbar";
 import html2canvas from 'html2canvas';
+import Loading from "../UI/Loading/Loading";
+import spotifyImg from '../../assets/img/spotify.png';
+import netflixImg from '../../assets/img/netflix.svg';
+import youtubeImg from '../../assets/img/youtube.svg';
 
 const Home = () => {
     const getKey = ({lat:lat1, lng:lng1},{lat:lat2, lng:lng2}) => lat1.toString() + lng1.toString() + lat2.toString() + lng2.toString();
@@ -15,11 +19,11 @@ const Home = () => {
         routesData.forEach(({details, legs}, index) => {
             let key = getKey(legs.start_location, legs.end_location);
             obj[key] = (
-                <div className={classes.routeModalData}>
+                <div key={index} className={classes.routeModalData}>
                     {
                         legs.steps.map((s, sIndex) => {
                             return (
-                                <div className={classes.step}>
+                                <div key={sIndex} className={classes.step}>
                                     <p><i
                                         className="material-icons">{s.travel_mode == "WALKING" ? "directions_walk" : "directions_transit"}</i>
                                     </p>
@@ -38,8 +42,16 @@ const Home = () => {
         return obj;
     }
 
+
     const getIndividualRoute = (key) => {
         return individualRoutesArray()[key];
+    }
+
+    const getTypeOfPlace = (type) => {
+        if(type=="eminem") return "account_balance"
+        if(type=="library") return "local_library"
+        if(type=="park") return "local_florist"
+        if(type=="food") return "local_dining"
     }
 
 
@@ -56,15 +68,18 @@ const Home = () => {
 
         const placesData = await API.get(`/places?lat=${lat.toString()}&lon=${lon.toString()}`)
         // console.log(await placesData.data.map(e => {type: e.type}))
-        const placesElem = await placesData.data.slice(0,6).map(e => (
-                        <div className={classes.placeRecom}>
-                             <p>{e.type}</p>
-                             <p>{e.name}</p>
+        const placesElem = await placesData.data.slice(0,6).map((e, index) => (
+                        <div key={index} className={classes.placeRecom}>
+                             <p><i className="material-icons">{getTypeOfPlace(e.type)}</i></p>
+                             <p className={classes.nameOfInterimPlace}>{e.name}</p>
                         </div>
                     ))
         console.log("before calling set modal")
         console.log(placesElem)
-        activateAndSetModal(placesElem);
+        activateAndSetModal(<div>
+            <h1>Places near you:</h1>
+            {placesElem}
+        </div>);
         // console.log(placesData.data);
         // setModalElem();
     }
@@ -76,11 +91,24 @@ const Home = () => {
         document.getElementById("modal").classList.add('activeModal');
         document.getElementById("modal").style.top=`calc(${window.pageYOffset}px + 50%)`;
     }
+    const whichMedia = () => {
+        if(media == "youtube") return youtubeImg
+        if(media == "spotify") return spotifyImg
+        if(media == "netflix") return netflixImg
+        return youtubeImg
+    }
 
+
+    const whichUrl = () => {
+        console.log("media: ", media)
+        if(media == "youtube") return "www.youtube.com"
+        if(media == "spotify") return "www.spotify.com"
+        if(media == "netflix") return "www.netflix.com"
+    }
     const details = () => {
         return routesData.map(({details, legs, fares}, index) => {
             return (
-                <div>
+                <div key={index}>
                     <div className={classes.data} key={index}>
                         <div className={classes.travelSection}>
                             <div className={[classes.blank, classes.section].join(" ")}>
@@ -90,9 +118,20 @@ const Home = () => {
                             <div className={classes.section}>
                                 {(index != 0) && <div onClick={(e) => toggleClass(`extendedMenu${getKey(legs.start_location, legs.end_location)}`)}
                                                       className={[classes.extraTime, classes.linedIcon2].join(" ")}>
+                                    <i className="material-icons">
+                                        watch_later
+                                    </i>
                                     <div id={`extendedMenu${getKey(legs.start_location, legs.end_location)}`} className={[classes.extendedMenu].join(" ")}>
-                                        <div onClick={() => placesModal(legs.start_location)} className={classes.icon}></div>
-                                        <div className={[classes.icon, (media == "youtube") ? classes.youtube : (media=="spotify"?classes.spotify:classes.netflix)].join(" ")}></div>
+                                        <div onClick={() => placesModal(legs.start_location)} className={classes.icon}>
+                                            <i className="material-icons">
+                                                place
+                                            </i>
+                                        </div>
+                                        <div style={{'background':'transparent', 'box-shadow':'none'}} className={[classes.icon].join(" ")}>
+                                            <a target={"_blank"} style={{'height':'100%', 'width':'100%'}} href={whichUrl()}>
+                                                <img style={{'width':'50px', 'height':'50px'}} src={whichMedia()} alt=""/>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>}
                                 <div
@@ -100,7 +139,11 @@ const Home = () => {
 
                                         activateAndSetModal(getIndividualRoute(getKey(legs.start_location, legs.end_location)))
                                     }}
-                                    className={[classes.SMRT, (index != 0) ? classes.linedIcon2 : classes.linedIcon, "directionClick"].join(" ")}></div>
+                                    className={[classes.SMRT, (index != 0) ? classes.linedIcon2 : classes.linedIcon, "directionClick"].join(" ")}>
+                                    <i className="material-icons">
+                                        directions_transit
+                                    </i>
+                                </div>
                             </div>
 
                             <div className={[classes.details, classes.section].join(" ")}>
@@ -119,20 +162,33 @@ const Home = () => {
         });
     }
 
+    const totalMoney = () => {
+        let tFares = 0;
+        routesData.map(({fares}) => {
+            tFares += parseInt(fares);
+        })
+
+        return tFares;
+    }
     return (
 
         <div className={classes.Home}>
             <Navbar />
 
             <div>
-                <div onClick={() => {
-                    html2canvas(document.querySelector("#root")).then(canvas => {
-                        document.body.appendChild(canvas)
-                    });
-                }} className={classes.home}></div>
-                {details()}
-                {/*{individualRoutes()}*/}
+                <div className={classes.home}>
 
+                    {(!routesData)  && <Loading/>}
+
+                    <div className={classes.totalCash}>{`$${totalMoney()/100}`}</div>
+                    <i className="material-icons">
+                        home
+                    </i>
+                    <div className={classes.blank}></div>
+                </div>
+                {details()}
+
+                {/*{individualRoutes()}*/}
 
             </div>
             <Modal>
