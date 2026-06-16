@@ -1,0 +1,10 @@
+{
+  "name": "hackntu",
+  "version": "1.0.0",
+  "description": "HackNTU Day Planner",
+  "private": true,
+  "scripts": {
+    "start:backend": "cd Backend && npm start",
+    "start:frontend": "cd DayPlanner && npm start"
+  }
+}
